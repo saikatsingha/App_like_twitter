@@ -3,7 +3,6 @@ from django.shortcuts import render
 
 from .models import Tweet
 
-# Create your views here.
 def home_view(request, *args, **kwargs):
     return render(request, "pages/home.html", context={}, status=200)
 
@@ -21,4 +20,4 @@ def tweet_detail_view(request, tweet_id, *args, **kwargs):
     except:
         data['message'] = "Not found"
         status = 404
-    return JsonResponse(data, status=status) # json.dumps content_type='application/json'
+    return JsonResponse(data, status=status) 

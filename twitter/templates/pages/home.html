@@ -9,7 +9,7 @@ this is amazing!!!!
 
 <div class='row text-center'>
     <div class='col'>
-        <h1>Welcome to Tweetme 2</h1>
+        <h1>Welcome to Twitter</h1>
     </div>
 </div>
 
@@ -32,7 +32,7 @@ this is amazing!!!!
 <script>
 
 
-function handleTweetCreateFormDidSumbit(event) {
+function handleTweetCreateFormDidSubmit(event) {
     event.preventDefault()
     const myForm = event.target
     const myFormData = new FormData(myForm)
@@ -49,7 +49,7 @@ function handleTweetCreateFormDidSumbit(event) {
     xhr.send(myFormData)
 }
 const tweetCreateFormEl = document.getElementById("tweet-create-form")
-tweetCreateFormEl.addEventListener("submit", handleTweetCreateFormDidSumbit)
+tweetCreateFormEl.addEventListener("submit", handleTweetCreateFormDidSubmit)
 
 
 const tweetsEl = document.getElementById("tweets") 

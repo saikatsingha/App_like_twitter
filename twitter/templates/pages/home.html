@@ -9,7 +9,7 @@ this is amazing!!!!
 
 <div class='row text-center'>
     <div class='col'>
-        <h1>Welcome to Twitter</h1>
+        <h1>Welcome to Tweetme 2</h1>
     </div>
 </div>
 
@@ -32,27 +32,35 @@ this is amazing!!!!
 <script>
 
 
-function handleTweetCreateFormDidSubmit(event) {
+function handleTweetCreateFormDidSumbit(event) {
     event.preventDefault()
     const myForm = event.target
     const myFormData = new FormData(myForm)
     const url = myForm.getAttribute("action")
     const method = myForm.getAttribute("method")
     const xhr = new XMLHttpRequest()
+    const responseType = "json"
+    xhr.responseType = responseType
     xhr.open(method, url)
+    xhr.setRequestHeader("HTTP_X_REQUESTED_WITH", "XMLHttpRequest")
+    xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest")
     xhr.onload = function() {
-        const serverResponse = xhr.response
-        // console.log(serverResponse)
-        const tweetsEl = document.getElementById("tweets")
-        loadTweets(tweetsEl) 
+        if (xhr.status === 201) {
+            const newTweetJson = xhr.response
+            console.log(newTweetJson.likes)
+            const newTweetElement = formatTweetElement(newTweetJson)
+            console.log(newTweetElement)
+            tweetsContainerElement.prepend(newTweetElement)
+        }
+        
     }
     xhr.send(myFormData)
 }
 const tweetCreateFormEl = document.getElementById("tweet-create-form")
-tweetCreateFormEl.addEventListener("submit", handleTweetCreateFormDidSubmit)
+tweetCreateFormEl.addEventListener("submit", handleTweetCreateFormDidSumbit)
 
 
-const tweetsEl = document.getElementById("tweets") 
+const tweetsContainerElement = document.getElementById("tweets") 
 
 function loadTweets(tweetsElement) {
     const xhr = new XMLHttpRequest()
@@ -76,7 +84,7 @@ function loadTweets(tweetsElement) {
     xhr.send()
 }
 
-loadTweets(tweetsEl)
+loadTweets(tweetsContainerElement)
 
 
 function handleDidLike (tweet_id, currentCount) {

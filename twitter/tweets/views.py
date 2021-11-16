@@ -31,8 +31,6 @@ def tweet_create_view(request, *args, **kwargs):
 def tweet_list_view(request, *args, **kwargs):
     """
     REST API VIEW
-    Consume by JavaScript or Swift/Java/iOS/Andriod
-    return json data
     """
     qs = Tweet.objects.all()
     tweets_list = [x.serialize() for x in qs]
@@ -46,8 +44,6 @@ def tweet_list_view(request, *args, **kwargs):
 def tweet_detail_view(request, tweet_id, *args, **kwargs):
     """
     REST API VIEW
-    Consume by JavaScript or Swift/Java/iOS/Andriod
-    return json data
     """
     data = {
         "id": tweet_id,

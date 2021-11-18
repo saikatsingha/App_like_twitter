@@ -1,2 +1,2 @@
 # App_like_twitter
-saikatsingha/twitter_app
+Trying to build a Twitter app using Django and react

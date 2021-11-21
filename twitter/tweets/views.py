@@ -9,7 +9,7 @@ from .models import Tweet
 
 ALLOWED_HOSTS = settings.ALLOWED_HOSTS
 
-# Create your views here.
+
 def home_view(request, *args, **kwargs):
     return render(request, "pages/home.html", context={}, status=200)
 
@@ -18,7 +18,7 @@ def tweet_create_view(request, *args, **kwargs):
     next_url = request.POST.get("next") or None
     if form.is_valid():
         obj = form.save(commit=False)
-        # do other form related logic
+
         obj.save()
         if request.is_ajax():
             return JsonResponse(obj.serialize(), status=201) # 201 == created items
@@ -55,4 +55,4 @@ def tweet_detail_view(request, tweet_id, *args, **kwargs):
     except:
         data['message'] = "Not found"
         status = 404
-    return JsonResponse(data, status=status) # json.dumps content_type='application/json'
+    return JsonResponse(data, status=status) 

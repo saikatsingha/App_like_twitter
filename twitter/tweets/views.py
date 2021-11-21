@@ -12,7 +12,9 @@ ALLOWED_HOSTS = settings.ALLOWED_HOSTS
 
 def home_view(request, *args, **kwargs):
     return render(request, "pages/home.html", context={}, status=200)
-
+    """
+    Create tweets
+    """
 def tweet_create_view(request, *args, **kwargs):
     form = TweetForm(request.POST or None)
     next_url = request.POST.get("next") or None
@@ -27,11 +29,11 @@ def tweet_create_view(request, *args, **kwargs):
         form = TweetForm()
     return render(request, 'components/form.html', context={"form": form})
 
-
+    """
+    To show all tweets
+    """
 def tweet_list_view(request, *args, **kwargs):
-    """
-    REST API VIEW
-    """
+    
     qs = Tweet.objects.all()
     tweets_list = [x.serialize() for x in qs]
     data = {

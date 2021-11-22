@@ -5,6 +5,11 @@ from .models import Tweet
 
 MAX_TWEET_LENGTH = 240
 
+
+'''
+To create a form for tweet
+'''
+
 class TweetForm(forms.ModelForm):
     class Meta:
         model = Tweet

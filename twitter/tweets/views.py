@@ -43,18 +43,18 @@ def tweet_list_view(request, *args, **kwargs):
     return JsonResponse(data)
 
 
-def tweet_detail_view(request, tweet_id, *args, **kwargs):
-    """
-    REST API VIEW
-    """
-    data = {
-        "id": tweet_id,
-    }
-    status = 200
-    try:
-        obj = Tweet.objects.get(id=tweet_id)
-        data['content'] = obj.content
-    except:
-        data['message'] = "Not found"
-        status = 404
-    return JsonResponse(data, status=status) 
+# def tweet_detail_view(request, tweet_id, *args, **kwargs):
+#     """
+#     REST API VIEW
+#     """
+#     data = {
+#         "id": tweet_id,
+#     }
+#     status = 200
+#     try:
+#         obj = Tweet.objects.get(id=tweet_id)
+#         data['content'] = obj.content
+#     except:
+#         data['message'] = "Not found"
+#         status = 404
+#     return JsonResponse(data, status=status) 
